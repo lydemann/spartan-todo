@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
         ssrBuildDir: '../../dist/apps/analog-trpc/ssr',
         entryServer: 'apps/analog-trpc/src/main.server.ts',
         vite: {
-          inlineStylesExtension: 'css',
+          inlineStylesExtension: 'scss',
           tsconfig:
             mode === 'test'
               ? 'apps/analog-trpc/tsconfig.spec.json'

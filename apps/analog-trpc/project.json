@@ -14,7 +14,8 @@
       ],
       "options": {
         "configFile": "vite.config.ts",
-        "outputPath": "dist/apps/analog-trpc/client"
+        "outputPath": "dist/apps/analog-trpc/client",
+        "styles": ["src/theme.scss"]
       },
       "defaultConfiguration": "production",
       "configurations": {
