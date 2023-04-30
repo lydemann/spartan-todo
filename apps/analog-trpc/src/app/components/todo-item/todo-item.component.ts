@@ -9,7 +9,7 @@ import { TodoItem } from './todo-item';
   imports: [CommonModule, MatCheckboxModule],
   template: `
     <div>
-      <mat-checkbox [checked]="todo?.completed" id="completed">
+      <mat-checkbox [checked]="item?.completed" id="completed">
         {{ item.title }}</mat-checkbox
       >
     </div>
