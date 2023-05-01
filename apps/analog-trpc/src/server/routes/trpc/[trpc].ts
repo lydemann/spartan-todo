@@ -1,4 +1,4 @@
-import { createTrpcNitroHandler } from '@spartan/trpc';
+import { createTrpcNitroHandler } from '@spartan-todo/trpc';
 import { createContext } from '../../trpc/context';
 import { appRouter } from '../../trpc/routers';
 // export API handler

@@ -12,4 +12,5 @@ model todo {
   created_at DateTime? @default(now()) @db.Timestamptz(6)
   name       String?
   is_completed  Boolean?
+  created_by String?
 }

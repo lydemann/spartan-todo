@@ -8,9 +8,7 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:ng-packagr",
-      "outputs": [
-        "node_modules/@spartan/trpc"
-      ],
+      "outputs": ["node_modules/@spartan-todo/trpc"],
       "options": {
         "project": "libs/trpc/ng-package.json"
       },
@@ -26,14 +24,9 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/trpc/**/*.ts",
-          "libs/trpc/**/*.html"
-        ]
+        "lintFilePatterns": ["libs/trpc/**/*.ts", "libs/trpc/**/*.html"]
       }
     }
   }

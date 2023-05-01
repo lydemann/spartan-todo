@@ -23,7 +23,7 @@ export type TrpcClient<AppRouter extends AnyRouter> = ReturnType<
 >;
 
 const tRPC_INJECTION_TOKEN = new InjectionToken<unknown>(
-  '@spartan/trpc proxy client'
+  '@spartan-todo/trpc proxy client'
 );
 export const createTrpcClient = <AppRouter extends AnyRouter>({
   url,

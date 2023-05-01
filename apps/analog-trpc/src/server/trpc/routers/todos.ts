@@ -18,6 +18,40 @@ export const todoRouter = router({
         },
       })
     ),
+  update: publicProcedure
+    .input(
+      z.object({
+        id: z.bigint(),
+        name: z.string(),
+      })
+    )
+    .mutation(({ input }) =>
+      prisma.todo.update({
+        data: {
+          name: input.name,
+        },
+        where: {
+          id: input.id,
+        },
+      })
+    ),
+  complete: publicProcedure
+    .input(
+      z.object({
+        id: z.bigint(),
+        isCompleted: z.boolean(),
+      })
+    )
+    .mutation(({ input }) =>
+      prisma.todo.update({
+        data: {
+          is_completed: input.isCompleted,
+        },
+        where: {
+          id: input.id,
+        },
+      })
+    ),
   list: publicProcedure.query(() => prisma.todo.findMany()),
   remove: publicProcedure
     .input(
