@@ -1,5 +1,5 @@
 export interface TodoItem {
   id: number;
-  title: string;
+  name: string;
   completed: boolean;
 }

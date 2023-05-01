@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { TodoItem } from './todo-item';
+import { todo } from '@prisma/client';
 
 @Component({
   selector: 'app-todo-item',
@@ -10,7 +10,7 @@ import { TodoItem } from './todo-item';
   template: `
     <div>
       <mat-checkbox [checked]="item?.completed" id="completed">
-        {{ item.title }}</mat-checkbox
+        {{ item.name }}</mat-checkbox
       >
     </div>
   `,
@@ -23,5 +23,5 @@ import { TodoItem } from './todo-item';
   ],
 })
 export class TodoItemComponent {
-  @Input() item!: TodoItem;
+  @Input() item!: todo;
 }

@@ -3,22 +3,32 @@
  * of doing things https://github.com/Dafnik/ngx-trpc
  */
 import { InjectionToken, Provider, TransferState } from '@angular/core';
-import 'isomorphic-fetch';
-import superjson from 'superjson';
 import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
 import { AnyRouter } from '@trpc/server';
+import 'isomorphic-fetch';
+import superjson from 'superjson';
+import {
+  provideTrpcCacheState,
+  provideTrpcCacheStateStatusManager,
+  tRPC_CACHE_STATE,
+} from './cache-state';
 import { transferStateLink } from './links/transfer-state-link';
-import { provideTrpcCacheState, provideTrpcCacheStateStatusManager, tRPC_CACHE_STATE } from './cache-state';
 
 export type TrpcOptions = Partial<{
   url: string;
 }>;
 
-export type TrpcClient<AppRouter extends AnyRouter> = ReturnType<typeof createTRPCProxyClient<AppRouter>>;
+export type TrpcClient<AppRouter extends AnyRouter> = ReturnType<
+  typeof createTRPCProxyClient<AppRouter>
+>;
 
-const tRPC_INJECTION_TOKEN = new InjectionToken<unknown>('@spartan/trpc proxy client');
-export const createTrpcClient = <AppRouter extends AnyRouter>({ url }: TrpcOptions) => {
-  const provideTRPCClient = (): Provider[] => ([
+const tRPC_INJECTION_TOKEN = new InjectionToken<unknown>(
+  '@spartan/trpc proxy client'
+);
+export const createTrpcClient = <AppRouter extends AnyRouter>({
+  url,
+}: TrpcOptions) => {
+  const provideTRPCClient = (): Provider[] => [
     provideTrpcCacheState(),
     provideTrpcCacheStateStatusManager(),
     {
@@ -31,16 +41,16 @@ export const createTrpcClient = <AppRouter extends AnyRouter>({ url }: TrpcOptio
           links: [
             transferStateLink(),
             httpBatchLink({
-              url: url ?? ''
-            })
-          ]
+              url: url ?? '',
+            }),
+          ],
         });
       },
-      deps: [tRPC_CACHE_STATE, TransferState]
-    }
-  ]);
+      deps: [tRPC_CACHE_STATE, TransferState],
+    },
+  ];
   return {
     tRPCClient: tRPC_INJECTION_TOKEN as InjectionToken<TrpcClient<AppRouter>>,
-    provideTRPCClient
+    provideTRPCClient,
   };
 };

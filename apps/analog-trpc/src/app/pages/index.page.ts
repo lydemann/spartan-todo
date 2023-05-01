@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { todo } from '@prisma/client';
 import { injectTRPCClient } from '../../trpc-client';
-import { TodoItem } from '../components/todo-item/todo-item';
 import { TodoItemComponent } from '../components/todo-item/todo-item.component';
 
 @Component({
@@ -14,15 +14,13 @@ import { TodoItemComponent } from '../components/todo-item/todo-item.component';
   `,
 })
 export default class HomeComponent {
-  todoItems: TodoItem[] = [
-    {
-      id: 0,
-      title: 'Learn about Analog',
-      completed: false,
-    },
-  ];
+  todoItems: todo[] = [];
 
   tRpcClient = injectTRPCClient();
 
-  constructor() {}
+  constructor() {
+    this.tRpcClient.todo.list.query().then((items) => {
+      this.todoItems = items;
+    });
+  }
 }
