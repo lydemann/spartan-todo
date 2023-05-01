@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { injectTRPCClient } from '../../trpc-client';
 import { TodoItem } from '../components/todo-item/todo-item';
 import { TodoItemComponent } from '../components/todo-item/todo-item.component';
 
@@ -20,4 +21,8 @@ export default class HomeComponent {
       completed: false,
     },
   ];
+
+  tRpcClient = injectTRPCClient();
+
+  constructor() {}
 }
